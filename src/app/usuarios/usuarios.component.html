@@ -1,0 +1,58 @@
+<!-- Formulário de Usuário -->
+<form>
+  <!-- Campo para inserir o nome do usuário -->
+  <div class="form-group">
+    <label for="nome">Nome:</label>
+    <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" [(ngModel)]="usuario.nome">
+  </div>
+
+  <!-- Campo para inserir o email do usuário -->
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="usuario.email">
+  </div>
+
+  <!-- Campo para inserir a idade do usuário -->
+  <div class="form-group">
+    <label for="idade">Idade:</label>
+    <input type="number" class="form-control" id="idade" placeholder="Idade" name="idade" [(ngModel)]="usuario.idade">
+  </div>
+
+  <!-- Botões de Ação -->
+  <div class="form-group">
+    <!-- Botão para cadastrar um novo usuário -->
+    <button type="button" class="btn btn-primary" *ngIf="btnUsuarios" (click)="cadastrar();">Cadastrar</button>
+    <!-- Botão para alterar um usuário existente -->
+    <button type="button" class="btn btn-warning" *ngIf="!btnUsuarios" (click)="alterar()">Alterar</button>
+    <!-- Botão para excluir um usuário existente -->
+    <button type="button" class="btn btn-danger" *ngIf="!btnUsuarios" (click)="apagar()">Excluir</button>
+    <!-- Botão para cancelar a operação em andamento -->
+    <button type="button" class="btn btn-secondary" *ngIf="!btnUsuarios" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>
+
+<!-- Tabela de Usuários -->
+<table class="table" *ngIf="tabela">
+  <thead>
+    <!-- Cabeçalho da tabela -->
+    <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Idade</th>
+      <th>Selecionar</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <!-- Linhas da tabela, exibindo os usuários -->
+    <tr *ngFor="let u of usuarios; index as i">
+      <td>{{u.id}}</td>
+      <td>{{u.nome}}</td>
+      <td>{{u.email}}</td>
+      <td>{{u.idade}}</td>
+      <!-- Botão para selecionar um usuário na tabela -->
+      <td><button class="btn btn-success" (click)="selecionarUsuario(i)">Selecionar</button></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,60 @@
+<!-- Formulário de Séries -->
+<form>
+  <!-- Campo para inserir o nome da série -->
+  <input type="text" placeholder="Nome" class="form-control" name="nome" [(ngModel)]="serie.nome">
+
+  <!-- Campo para inserir o ano de lançamento da série -->
+  <p>Ano</p>
+  <input type="number" placeholder="Ano" class="form-control" name="ano" [(ngModel)]="serie.ano">
+
+  <!-- Campo para inserir o número de temporadas da série -->
+  <p>Temporadas</p>
+  <input type="number" placeholder="Temporadas" class="form-control" name="temporadas" [(ngModel)]="serie.temporadas">
+
+  <!-- Campo para inserir o número de episódios da série -->
+  <p>Episódios</p>
+  <input type="number" placeholder="Episódios" class="form-control" name="episodios" [(ngModel)]="serie.episodios">
+
+  <!-- Checkbox para indicar se a série está finalizada -->
+  <input type="checkbox" class="form-check-input" name="finalizada" [(ngModel)]="serie.finalizada"> Finalizada
+
+  <!-- Campo para inserir o gênero da série -->
+  <input type="text" placeholder="Gênero" class="form-control" name="genero" [(ngModel)]="serie.genero">
+
+  <!-- Botões de Ação -->
+  <input type="button" value="Cadastrar" *ngIf="btnSeries" class="btn btn-primary" (click)="cadastrar();">
+  <input type="button" value="Alterar" *ngIf="!btnSeries" class="btn btn-warning" (click)="alterar()">
+  <input type="button" value="Excluir" *ngIf="!btnSeries" class="btn btn-danger" (click)="apagar()">
+  <input type="button" value="Cancelar" *ngIf="!btnSeries" class="btn btn-secondary" (click)="cancelar()">
+</form>
+
+<!-- Tabela de Séries -->
+<table class="table" *ngIf="tabela">
+  <!-- Cabeçalho da tabela -->
+  <thead>
+      <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Ano</th>
+          <th>Temporadas</th>
+          <th>Episódios</th>
+          <th>Finalizada</th>
+          <th>Gênero</th>
+          <th>Selecionar</th>
+      </tr>
+  </thead>
+  <tbody>
+      <!-- Linhas da tabela, exibindo as séries -->
+      <tr *ngFor="let s of series; index as i">
+          <td>{{s.id}}</td>
+          <td>{{s.nome}}</td>
+          <td>{{s.ano}}</td>
+          <td>{{s.temporadas}}</td>
+          <td>{{s.episodios}}</td>
+          <td>{{s.finalizada ? 'Sim' : 'Não'}}</td>
+          <td>{{s.genero}}</td>
+          <!-- Botão para selecionar uma série na tabela -->
+          <td><button class="btn btn-success" (click)="selecionarSerie(i)">Selecionar</button></td>
+      </tr>
+  </tbody>
+</table>

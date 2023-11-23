@@ -1,0 +1,45 @@
+<!-- esporte.component.html -->
+
+<!-- Formulário de Esportes -->
+<form>
+  <!-- Campo para inserir o nome do esporte -->
+  <div class="form-group">
+    <label for="nome">Nome:</label>
+    <input type="text" class="form-control" id="nome" placeholder="Nome" name="nomeEsporte" [(ngModel)]="esporte.nomeEsporte">
+  </div>
+
+  <!-- Campo para inserir o nome do campeonato relacionado ao esporte -->
+  <div class="form-group">
+    <label for="campeonato">Campeonato:</label>
+    <input type="text" class="form-control" id="campeonato" placeholder="Campeonato" name="campeonato" [(ngModel)]="esporte.campeonato">
+  </div>
+
+  <!-- Botões de Ação -->
+  <button type="button" class="btn btn-primary" *ngIf="btnEsportes" (click)="cadastrar();">Cadastrar</button>
+  <button type="button" class="btn btn-warning" *ngIf="!btnEsportes" (click)="alterar()">Alterar</button>
+  <button type="button" class="btn btn-danger" *ngIf="!btnEsportes" (click)="apagar()">Excluir</button>
+  <button type="button" class="btn btn-secondary" *ngIf="!btnEsportes" (click)="cancelar()">Cancelar</button>
+</form>
+
+<!-- Tabela de Esportes -->
+<table class="table" *ngIf="tabela">
+  <!-- Cabeçalho da tabela -->
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Campeonato</th>
+      <th>Selecionar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Linhas da tabela, exibindo os esportes -->
+    <tr *ngFor="let e of esportes; index as i">
+      <td>{{e.id}}</td>
+      <td>{{e.nomeEsporte}}</td>
+      <td>{{e.campeonato}}</td>
+      <!-- Botão para selecionar um esporte na tabela -->
+      <td><button class="btn btn-success" (click)="selecionarEsporte(i)">Selecionar</button></td>
+    </tr>
+  </tbody>
+</table>

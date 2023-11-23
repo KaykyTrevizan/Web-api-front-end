@@ -1,0 +1,75 @@
+<!-- Formulário de Filmes -->
+<form>
+    <!-- Campo para inserir o nome do filme -->
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" [(ngModel)]="filme.nome">
+    </div>
+
+    <!-- Campo para inserir o ano do filme -->
+    <div class="form-group">
+        <label for="ano">Ano:</label>
+        <input type="number" class="form-control" id="ano" placeholder="Ano" name="ano" [(ngModel)]="filme.ano">
+    </div>
+
+    <!-- Campo para inserir o diretor do filme -->
+    <div class="form-group">
+        <label for="diretor">Diretor:</label>
+        <input type="text" class="form-control" id="diretor" placeholder="Diretor" name="diretor" [(ngModel)]="filme.diretor">
+    </div>
+
+    <!-- Campo para inserir a duração do filme -->
+    <div class="form-group">
+        <label for="duracao">Duração:</label>
+        <input type="number" class="form-control" id="duracao" placeholder="Duração" name="duracao" [(ngModel)]="filme.duracao">
+    </div>
+
+    <!-- Campo para inserir o gênero do filme -->
+    <div class="form-group">
+        <label for="genero">Gênero:</label>
+        <input type="text" class="form-control" id="genero" placeholder="Gênero" name="genero" [(ngModel)]="filme.genero">
+    </div>
+
+    <!-- Campo para inserir o estúdio do filme -->
+    <div class="form-group">
+        <label for="estudio">Estúdio:</label>
+        <input type="text" class="form-control" id="estudio" placeholder="Estúdio" name="estudio" [(ngModel)]="filme.estudio">
+    </div>
+
+    <!-- Botões de Ação -->
+    <button *ngIf="btnFilmes" class="btn btn-primary" (click)="cadastrar()">Cadastrar</button>
+    <button *ngIf="!btnFilmes" class="btn btn-warning" (click)="alterar()">Alterar</button>
+    <button *ngIf="!btnFilmes" class="btn btn-danger" (click)="apagar()">Excluir</button>
+    <button *ngIf="!btnFilmes" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+</form>
+
+<!-- Tabela de Filmes -->
+<table class="table" *ngIf="tabela">
+    <thead>
+        <!-- Cabeçalho da tabela -->
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Ano</th>
+            <th>Diretor</th>
+            <th>Duração</th>
+            <th>Gênero</th>
+            <th>Estúdio</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Linhas da tabela, exibindo os filmes -->
+        <tr *ngFor="let f of filmes; index as i">
+            <td>{{f.id}}</td>
+            <td>{{f.nome}}</td>
+            <td>{{f.ano}}</td>
+            <td>{{f.diretor}}</td>
+            <td>{{f.duracao}}</td>
+            <td>{{f.genero}}</td>
+            <td>{{f.estudio}}</td>
+            <!-- Botão para selecionar um filme na tabela -->
+            <td><button class="btn btn-success" (click)="selecionarFilme(i)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>
